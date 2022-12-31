@@ -33,7 +33,7 @@ fn main() {
         path::PathBuf::from("./resources")
     };
 
-    let cb = ggez::ContextBuilder::new("pong", "Maarten van Keulen").add_resource_path(resource_dir);
+    let cb = ggez::ContextBuilder::new("gol", "Maarten van Keulen").add_resource_path(resource_dir);
     let (mut ctx, event_loop) = cb.build().expect("Could not build context");
 	
 	let my_game = MyGame::new(&mut ctx);
