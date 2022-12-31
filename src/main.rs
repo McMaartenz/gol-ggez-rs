@@ -2,20 +2,17 @@ use ggez::{
     Context,
     GameResult,
     glam::*,
-    graphics::{self, Color, TextFragment, PxScale},
+    graphics::{self, Color},
     event::{self, EventHandler},
-    input::keyboard::KeyCode, audio::{self, Source, SoundSource}
 };
-use min_max::min;
 
-use std::{ path, env, time::{Instant, Duration} };
+use std::{ path, env, time::{Instant} };
 
 mod gol;
 
 use gol::gol::{
 	WIDTH,
 	HEIGHT,
-	FPS_CAP,
 	MILLIS
 };
 
@@ -45,7 +42,7 @@ fn main() {
 
 struct MyGame {
 	buffer: [[bool;WIDTH];HEIGHT],
-	lastUpdate: Instant
+	last_update: Instant
 }
 
 impl MyGame {
@@ -55,16 +52,16 @@ impl MyGame {
 
 		MyGame {
 			buffer,
-			lastUpdate: Instant::now()
+			last_update: Instant::now()
 		}
 	}
 }
 
 impl EventHandler for MyGame {
     fn update(&mut self, _ctx: &mut Context) -> GameResult {
-		if Instant::now().duration_since(self.lastUpdate) > MILLIS {
+		if Instant::now().duration_since(self.last_update) > MILLIS {
 			gol::gol::tick(&mut self.buffer);
-			self.lastUpdate = Instant::now();
+			self.last_update = Instant::now();
 		}
 		
 		Ok(())

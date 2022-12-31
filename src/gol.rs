@@ -1,6 +1,6 @@
 pub mod gol {
-    use std::{thread, fs::File, io::prelude::*, path::Path};
-    use std::time::{Duration, Instant};
+    use std::{fs::File, io::prelude::*, path::Path};
+    use std::time::{Duration};
 
     // Yea this is just ignored
     pub const FPS_CAP: f32 = 24.0;
