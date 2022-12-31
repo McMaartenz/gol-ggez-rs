@@ -76,11 +76,21 @@ impl EventHandler for MyGame {
 				let alive = buffer[y][x];
 
 				if alive {
+					let num = gol::gol::count_neighbors(&buffer, y, x);
+					
+					let col = match num {
+						0 => graphics::Color::BLUE,
+						1..=3 => graphics::Color::CYAN,
+						4..=7 => graphics::Color::GREEN,
+						8 => graphics::Color::MAGENTA,
+						_ => panic!("Unexpected count")
+					};
+
 					let pa = &mut graphics::MeshBuilder::new();
 					pa.rectangle(
 						graphics::DrawMode::Fill(graphics::FillOptions::DEFAULT),
 						graphics::Rect::new(x as f32 * CELL_SIZE, y as f32 * CELL_SIZE, CELL_SIZE, CELL_SIZE),
-						graphics::Color::new(1.0, 1.0, 1.0, 1.0),
+						col,
 					)?;
 
 					let mut cell = graphics::Mesh::from_data(ctx, pa.build());

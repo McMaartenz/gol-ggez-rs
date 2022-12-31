@@ -69,7 +69,7 @@ pub mod gol {
         false
     }
 
-    fn count_neighbors(buffer: &[[bool;WIDTH];HEIGHT], y: usize, x: usize) -> u8 {
+    pub fn count_neighbors(buffer: &[[bool;WIDTH];HEIGHT], y: usize, x: usize) -> u8 {
         const DELTA_Y: [isize;8] = [0,1,1,1,0,-1,-1,-1];
         const DELTA_X: [isize;8] = [1,1,0,-1,-1,-1,0,1];
 
